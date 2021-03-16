@@ -67,14 +67,15 @@ purchases_per_buyer_pivot = (
                  values='orders_per_buyer')
 ).cumsum(axis=1)
 
-print(purchases_per_buyer_pivot)
-fig, ax = plt.subplots(figsize=(13, 9))
-sns.heatmap(purchases_per_buyer_pivot, annot=True, fmt='.2f', linewidths=2,
-            linecolor='black', ax=ax)
-ax.set_title('Среднее количество покупок на каждого покупателя')
-ax.set_xlabel('Lifetime когорты')
-ax.set_ylabel('Когорта')
-plt.show()
+purchases_per_buyer_pivot.to_csv('purchases_per_buyer.csv', sep='\t')
+print(type(purchases_per_buyer_pivot))
+# fig, ax = plt.subplots(figsize=(13, 9))
+# sns.heatmap(purchases_per_buyer_pivot, annot=True, fmt='.2f', linewidths=2,
+#             linecolor='black', ax=ax)
+# ax.set_title('Среднее количество покупок на каждого покупателя')
+# ax.set_xlabel('Lifetime когорты')
+# ax.set_ylabel('Когорта')
+# plt.show()
 
 cohort_buyers['revenue_per_buyer'] = cohort_buyers['revenue'] / cohort_buyers['n_orders']
 revenue_per_buyer_pivot = (
@@ -83,14 +84,15 @@ revenue_per_buyer_pivot = (
                  columns='cohort_lifetime',
                  values='revenue_per_buyer')
 )
-print(revenue_per_buyer_pivot)
-fig, ax = plt.subplots(figsize=(13, 9))
-sns.heatmap(revenue_per_buyer_pivot, annot=True, fmt='.1f', linewidths=2,
-            linecolor='black', ax=ax)
-ax.set_title('Средний чек')
-ax.set_xlabel('Lifetime когорты')
-ax.set_ylabel('Когорта')
-plt.show()
+revenue_per_buyer_pivot.to_csv('revenue_per_buyer.csv', sep='\t')
+print(type(revenue_per_buyer_pivot))
+# fig, ax = plt.subplots(figsize=(13, 9))
+# sns.heatmap(revenue_per_buyer_pivot, annot=True, fmt='.1f', linewidths=2,
+#             linecolor='black', ax=ax)
+# ax.set_title('Средний чек')
+# ax.set_xlabel('Lifetime когорты')
+# ax.set_ylabel('Когорта')
+# plt.show()
 
 cohort_sizes = (
     cohort_buyers[['first_order_month', 'cohort_buyers']]
@@ -118,12 +120,13 @@ output_ltv = (
                      values='ltv')
 ).cumsum(axis=1)
 
-fig, ax = plt.subplots(figsize=(13, 9))
-sns.heatmap(output_ltv, annot=True, fmt='.2f', linewidths=2,
-            linecolor='black', ax=ax)
-ax.set_title('LTV')
-ax.set_xlabel('Lifetime когорты')
-ax.set_ylabel('Когорта')
-plt.show()
+# fig, ax = plt.subplots(figsize=(13, 9))
+# sns.heatmap(output_ltv, annot=True, fmt='.2f', linewidths=2,
+#             linecolor='black', ax=ax)
+# ax.set_title('LTV')
+# ax.set_xlabel('Lifetime когорты')
+# ax.set_ylabel('Когорта')
+# plt.show()
+output_ltv.to_csv('ouput_ltv_csv.csv', sep='\t')
 
 
